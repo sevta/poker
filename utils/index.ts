@@ -51,11 +51,7 @@ export const getRandomInt = (min: number, max: number) => {
 
 export const poker = {
   card: [] as any,
-  /**
-   * fixme
-   * fix randomize card avoid same card
-   * @returns
-   */
+
   getRandomCard() {
     let result: Hand[] = [];
     for (let j = 0; j < suits.length; j++) {

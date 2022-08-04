@@ -1,6 +1,7 @@
 import {
   Affix,
   Button,
+  Center,
   Code,
   Container,
   Grid,
@@ -120,7 +121,7 @@ export default function Index() {
           right: theme.spacing.xl,
         }}
       >
-        <Group>
+        <Group spacing={0}>
           <Button onClick={onStart}>Start</Button>
           <Button color="dark" onClick={handlerOpenDebugModal.toggle}>
             Debug
@@ -131,10 +132,10 @@ export default function Index() {
         </Group>
       </Affix>
 
-      <Container fluid py="lg">
-        <Grid>
-          <Grid.Col xs={8}>
-            {isGameStarted && (
+      {isGameStarted ? (
+        <Container fluid py="lg">
+          <Grid>
+            <Grid.Col xs={8}>
               <Stack>
                 {players.map((p, i) => (
                   <Player
@@ -145,18 +146,29 @@ export default function Index() {
                   />
                 ))}
               </Stack>
-            )}
-          </Grid.Col>
-          <Grid.Col xs={4}>
-            <Text>the winner</Text>
-            <pre>
-              <Code>
-                {JSON.stringify(poker.getTheWinner(players), null, 2)}
-              </Code>
-            </pre>
-          </Grid.Col>
-        </Grid>
-      </Container>
+            </Grid.Col>
+            <Grid.Col xs={4}>
+              <Text>the winner</Text>
+              <pre>
+                <Code>
+                  {JSON.stringify(poker.getTheWinner(players), null, 2)}
+                </Code>
+              </pre>
+            </Grid.Col>
+          </Grid>
+        </Container>
+      ) : (
+        <Center my="xl">
+          <Text
+            weight="bold"
+            sx={{
+              fontSize: "3rem",
+            }}
+          >
+            Poker game
+          </Text>
+        </Center>
+      )}
     </Layout>
   );
 }
